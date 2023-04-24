@@ -49,6 +49,17 @@ namespace CleanArchMvc.WebUI.Controllers
             return View(categoryDTO);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var categoryDto = await _categoryService.GetById(id);
+
+            if (categoryDto == null) return NotFound();
+
+            return View(categoryDto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CategoryDTO category)
         {

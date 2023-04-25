@@ -1,18 +1,22 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly IWebHostEnvironment _environment;
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
 
-        public ProductsController(IProductService productService, ICategoryService categoryService)
+        public ProductsController(IWebHostEnvironment environment, IProductService productService, ICategoryService categoryService)
         {
+            _environment = environment;
             _productService = productService;
             _categoryService=categoryService;
         }
@@ -56,6 +60,21 @@ namespace CleanArchMvc.WebUI.Controllers
 
             var productDto = await _productService.GetById(id);
             if (productDto == null) return NotFound();
+
+            return View(productDto);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+            var productDto = await _productService.GetById(id);
+
+            if (productDto == null) return NotFound();
+
+            var wwwroot = _environment.WebRootPath;
+            var image = Path.Combine(wwwroot, "images\\" + productDto.Image);
+            var exists = System.IO.File.Exists(image);
+            ViewBag.ImageExist = exists;
 
             return View(productDto);
         }

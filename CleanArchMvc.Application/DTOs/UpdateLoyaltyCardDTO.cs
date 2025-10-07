@@ -15,7 +15,8 @@ namespace CleanArchMvc.Application.DTOs
         public decimal? CashbackValue { get; set; }
         public int? CardValidityDays { get; set; }
         public int? BenefitValidityDays { get; set; }
-        public List<int> ParticipatingStoreIds { get; set; } = new List<int>();
+        public List<int> ParticipatingNetworkIds { get; set; } = new List<int>();
+        public List<int> ParticipatingCompanyIds { get; set; } = new List<int>();
         public List<int> EligibleProductIds { get; set; } = new List<int>();
         public List<int> EligibleCategoryIds { get; set; } = new List<int>();
         public List<int> RewardProductIds { get; set; } = new List<int>();

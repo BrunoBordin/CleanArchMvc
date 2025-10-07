@@ -12,7 +12,7 @@ namespace CleanArchMvc.Domain.Interfaces
         Task<LoyaltyCard> RemoveAsync(LoyaltyCard loyaltyCard);
         Task<IEnumerable<LoyaltyCard>> GetActiveLoyaltyCardsAsync();
         Task<IEnumerable<LoyaltyCard>> GetLoyaltyCardsByScopeAsync(int scope);
-        Task<LoyaltyCard> GetActiveLoyaltyCardByStoreAsync(int storeId);
+        Task<LoyaltyCard> GetActiveLoyaltyCardByCompanyAsync(int companyId);
         Task<LoyaltyCard> GetActiveLoyaltyCardByNetworkAsync();
     }
 }

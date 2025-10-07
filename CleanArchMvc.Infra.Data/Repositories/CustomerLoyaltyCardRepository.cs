@@ -25,21 +25,21 @@ namespace CleanArchMvc.Infra.Data.Repositories
             return await _customerLoyaltyCardContext.CustomerLoyaltyCards
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<CustomerLoyaltyCard> GetByCustomerAndLoyaltyCardAsync(int customerId, int loyaltyCardId, int storeId)
+        public async Task<CustomerLoyaltyCard> GetByCustomerAndLoyaltyCardAsync(int customerId, int loyaltyCardId, int companyId)
         {
             return await _customerLoyaltyCardContext.CustomerLoyaltyCards
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .FirstOrDefaultAsync(x => x.CustomerId == customerId && 
                                         x.LoyaltyCardId == loyaltyCardId && 
-                                        x.StoreId == storeId);
+                                        x.CompanyId == companyId);
         }
 
         public async Task<IEnumerable<CustomerLoyaltyCard>> GetCustomerLoyaltyCardsAsync()
@@ -47,7 +47,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
             return await _customerLoyaltyCardContext.CustomerLoyaltyCards
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
@@ -72,7 +72,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                 .Where(x => x.CustomerId == customerId)
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
@@ -83,18 +83,18 @@ namespace CleanArchMvc.Infra.Data.Repositories
                 .Where(x => x.LoyaltyCardId == loyaltyCardId)
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<CustomerLoyaltyCard>> GetByStoreAsync(int storeId)
+        public async Task<IEnumerable<CustomerLoyaltyCard>> GetByCompanyAsync(int companyId)
         {
             return await _customerLoyaltyCardContext.CustomerLoyaltyCards
-                .Where(x => x.StoreId == storeId)
+                .Where(x => x.CompanyId == companyId)
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
@@ -105,7 +105,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                 .Where(x => x.IsCompleted)
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
@@ -117,17 +117,17 @@ namespace CleanArchMvc.Infra.Data.Repositories
                 .Where(x => x.ExpirationDate.HasValue && x.ExpirationDate.Value < now)
                 .Include(x => x.Customer)
                 .Include(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Redemptions)
                 .ToListAsync();
         }
 
-        public async Task<bool> CustomerHasActiveCardAsync(int customerId, int loyaltyCardId, int storeId)
+        public async Task<bool> CustomerHasActiveCardAsync(int customerId, int loyaltyCardId, int companyId)
         {
             return await _customerLoyaltyCardContext.CustomerLoyaltyCards
                 .AnyAsync(x => x.CustomerId == customerId && 
                              x.LoyaltyCardId == loyaltyCardId && 
-                             x.StoreId == storeId &&
+                             x.CompanyId == companyId &&
                              !x.IsCompleted &&
                              (!x.ExpirationDate.HasValue || x.ExpirationDate.Value > DateTime.UtcNow));
         }

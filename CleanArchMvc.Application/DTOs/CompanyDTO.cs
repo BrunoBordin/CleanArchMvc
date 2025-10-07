@@ -1,6 +1,6 @@
 namespace CleanArchMvc.Application.DTOs
 {
-    public class StoreDTO
+    public class CompanyDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -11,8 +11,10 @@ namespace CleanArchMvc.Application.DTOs
         public string ZipCode { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public int NetworkId { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public NetworkDTO Network { get; set; }
     }
 }

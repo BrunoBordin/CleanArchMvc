@@ -4,7 +4,7 @@ namespace CleanArchMvc.Application.DTOs
     {
         public int CustomerId { get; set; }
         public int LoyaltyCardId { get; set; }
-        public int StoreId { get; set; }
+        public int CompanyId { get; set; }
         public int StampCount { get; set; } = 1;
         public decimal PurchaseValue { get; set; }
         public List<int> ProductIds { get; set; } = new List<int>();

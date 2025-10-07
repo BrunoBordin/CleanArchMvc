@@ -6,7 +6,7 @@ namespace CleanArchMvc.Application.DTOs
     {
         public int Id { get; set; }
         public int CustomerLoyaltyCardId { get; set; }
-        public int StoreId { get; set; }
+        public int CompanyId { get; set; }
         public int? ProductId { get; set; }
         public decimal? DiscountValue { get; set; }
         public decimal? CashbackValue { get; set; }
@@ -17,7 +17,7 @@ namespace CleanArchMvc.Application.DTOs
         public DateTime? UsedAt { get; set; }
         public string? Notes { get; set; }
         public CustomerLoyaltyCardDTO CustomerLoyaltyCard { get; set; }
-        public StoreDTO Store { get; set; }
+        public CompanyDTO Company { get; set; }
         public ProductDTO? Product { get; set; }
         public bool IsExpired { get; set; }
     }

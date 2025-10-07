@@ -13,7 +13,8 @@ namespace CleanArchMvc.Application.Mappings
             
             // Loyalty Card System Mappings
             CreateMap<LoyaltyCard, LoyaltyCardDTO>().ReverseMap();
-            CreateMap<Store, StoreDTO>().ReverseMap();
+            CreateMap<Network, NetworkDTO>().ReverseMap();
+            CreateMap<Company, CompanyDTO>().ReverseMap();
             CreateMap<Customer, CustomerDTO>().ReverseMap();
             CreateMap<CustomerLoyaltyCard, CustomerLoyaltyCardDTO>()
                 .ForMember(dest => dest.RemainingStamps, opt => opt.MapFrom(src => src.GetRemainingStamps()))

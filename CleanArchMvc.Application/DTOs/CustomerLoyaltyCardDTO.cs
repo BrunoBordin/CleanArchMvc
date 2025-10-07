@@ -7,7 +7,7 @@ namespace CleanArchMvc.Application.DTOs
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int LoyaltyCardId { get; set; }
-        public int StoreId { get; set; }
+        public int CompanyId { get; set; }
         public int CurrentStamps { get; set; }
         public DateTime? FirstStampDate { get; set; }
         public DateTime? LastStampDate { get; set; }
@@ -17,7 +17,7 @@ namespace CleanArchMvc.Application.DTOs
         public DateTime? UpdatedAt { get; set; }
         public CustomerDTO Customer { get; set; }
         public LoyaltyCardDTO LoyaltyCard { get; set; }
-        public StoreDTO Store { get; set; }
+        public CompanyDTO Company { get; set; }
         public List<LoyaltyCardRedemptionDTO> Redemptions { get; set; } = new List<LoyaltyCardRedemptionDTO>();
         public int RemainingStamps { get; set; }
         public bool IsExpired { get; set; }

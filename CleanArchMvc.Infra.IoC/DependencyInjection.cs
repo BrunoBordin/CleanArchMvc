@@ -27,13 +27,15 @@ namespace CleanArchMvc.Infra.IoC
             
             // Loyalty Card System
             services.AddScoped<ILoyaltyCardRepository, LoyaltyCardRepository>();
-            services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<INetworkRepository, NetworkRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerLoyaltyCardRepository, CustomerLoyaltyCardRepository>();
             services.AddScoped<ILoyaltyCardRedemptionRepository, LoyaltyCardRedemptionRepository>();
             
             services.AddScoped<ILoyaltyCardService, LoyaltyCardService>();
-            services.AddScoped<IStoreService, StoreService>();
+            services.AddScoped<INetworkService, NetworkService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ICustomerLoyaltyCardService, CustomerLoyaltyCardService>();
             services.AddScoped<ILoyaltyCardRedemptionService, LoyaltyCardRedemptionService>();

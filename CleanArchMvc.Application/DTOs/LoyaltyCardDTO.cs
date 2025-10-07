@@ -19,7 +19,8 @@ namespace CleanArchMvc.Application.DTOs
         public int? BenefitValidityDays { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public List<StoreDTO> ParticipatingStores { get; set; } = new List<StoreDTO>();
+        public List<NetworkDTO> ParticipatingNetworks { get; set; } = new List<NetworkDTO>();
+        public List<CompanyDTO> ParticipatingCompanies { get; set; } = new List<CompanyDTO>();
         public List<ProductDTO> EligibleProducts { get; set; } = new List<ProductDTO>();
         public List<CategoryDTO> EligibleCategories { get; set; } = new List<CategoryDTO>();
         public List<ProductDTO> RewardProducts { get; set; } = new List<ProductDTO>();

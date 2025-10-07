@@ -28,8 +28,10 @@ namespace CleanArchMvc.Infra.Data.Repositories
         public async Task<LoyaltyCard> GetByIdWithDetailsAsync(int? id)
         {
             return await _loyaltyCardContext.LoyaltyCards
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                .Include(x => x.ParticipatingNetworks)
+                    .ThenInclude(x => x.Network)
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .Include(x => x.EligibleProducts)
                     .ThenInclude(x => x.Product)
                 .Include(x => x.EligibleCategories)
@@ -42,8 +44,10 @@ namespace CleanArchMvc.Infra.Data.Repositories
         public async Task<IEnumerable<LoyaltyCard>> GetLoyaltyCardsAsync()
         {
             return await _loyaltyCardContext.LoyaltyCards
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                .Include(x => x.ParticipatingNetworks)
+                    .ThenInclude(x => x.Network)
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .ToListAsync();
         }
 
@@ -65,8 +69,10 @@ namespace CleanArchMvc.Infra.Data.Repositories
         {
             return await _loyaltyCardContext.LoyaltyCards
                 .Where(x => x.Status == Domain.Enums.LoyaltyCardStatus.Active)
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                .Include(x => x.ParticipatingNetworks)
+                    .ThenInclude(x => x.Network)
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .ToListAsync();
         }
 
@@ -74,19 +80,21 @@ namespace CleanArchMvc.Infra.Data.Repositories
         {
             return await _loyaltyCardContext.LoyaltyCards
                 .Where(x => (int)x.Scope == scope)
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                .Include(x => x.ParticipatingNetworks)
+                    .ThenInclude(x => x.Network)
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .ToListAsync();
         }
 
-        public async Task<LoyaltyCard> GetActiveLoyaltyCardByStoreAsync(int storeId)
+        public async Task<LoyaltyCard> GetActiveLoyaltyCardByCompanyAsync(int companyId)
         {
             return await _loyaltyCardContext.LoyaltyCards
                 .Where(x => x.Status == Domain.Enums.LoyaltyCardStatus.Active &&
                            x.Scope == Domain.Enums.LoyaltyCardScope.SingleStore &&
-                           x.ParticipatingStores.Any(ps => ps.StoreId == storeId))
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                           x.ParticipatingCompanies.Any(pc => pc.CompanyId == companyId))
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .FirstOrDefaultAsync();
         }
 
@@ -95,8 +103,10 @@ namespace CleanArchMvc.Infra.Data.Repositories
             return await _loyaltyCardContext.LoyaltyCards
                 .Where(x => x.Status == Domain.Enums.LoyaltyCardStatus.Active &&
                            x.Scope == Domain.Enums.LoyaltyCardScope.Network)
-                .Include(x => x.ParticipatingStores)
-                    .ThenInclude(x => x.Store)
+                .Include(x => x.ParticipatingNetworks)
+                    .ThenInclude(x => x.Network)
+                .Include(x => x.ParticipatingCompanies)
+                    .ThenInclude(x => x.Company)
                 .FirstOrDefaultAsync();
         }
     }

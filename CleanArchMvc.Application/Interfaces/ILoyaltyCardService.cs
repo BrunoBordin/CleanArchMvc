@@ -11,7 +11,7 @@ namespace CleanArchMvc.Application.Interfaces
         Task<LoyaltyCardDTO> RemoveAsync(int? id);
         Task<LoyaltyCardDTO> UpdateStatusAsync(int id, int status);
         Task<IEnumerable<LoyaltyCardDTO>> GetActiveLoyaltyCardsAsync();
-        Task<LoyaltyCardDTO> GetActiveLoyaltyCardByStoreAsync(int storeId);
+        Task<LoyaltyCardDTO> GetActiveLoyaltyCardByCompanyAsync(int companyId);
         Task<LoyaltyCardDTO> GetActiveLoyaltyCardByNetworkAsync();
     }
 }

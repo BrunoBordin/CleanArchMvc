@@ -10,7 +10,7 @@ namespace CleanArchMvc.Domain.Interfaces
         Task<LoyaltyCardRedemption> UpdateAsync(LoyaltyCardRedemption redemption);
         Task<LoyaltyCardRedemption> RemoveAsync(LoyaltyCardRedemption redemption);
         Task<IEnumerable<LoyaltyCardRedemption>> GetByCustomerLoyaltyCardAsync(int customerLoyaltyCardId);
-        Task<IEnumerable<LoyaltyCardRedemption>> GetByStoreAsync(int storeId);
+        Task<IEnumerable<LoyaltyCardRedemption>> GetByCompanyAsync(int companyId);
         Task<IEnumerable<LoyaltyCardRedemption>> GetUnusedRedemptionsAsync();
         Task<IEnumerable<LoyaltyCardRedemption>> GetExpiredRedemptionsAsync();
         Task<IEnumerable<LoyaltyCardRedemption>> GetByCustomerAsync(int customerId);

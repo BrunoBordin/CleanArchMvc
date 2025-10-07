@@ -9,7 +9,7 @@ namespace CleanArchMvc.Application.Interfaces
         Task<LoyaltyCardRedemptionDTO> CreateAsync(RedeemRewardDTO redeemRewardDto);
         Task<LoyaltyCardRedemptionDTO> MarkAsUsedAsync(int id, string? notes = null);
         Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetByCustomerLoyaltyCardAsync(int customerLoyaltyCardId);
-        Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetByStoreAsync(int storeId);
+        Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetByCompanyAsync(int companyId);
         Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetUnusedRedemptionsAsync();
         Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetExpiredRedemptionsAsync();
         Task<IEnumerable<LoyaltyCardRedemptionDTO>> GetByCustomerAsync(int customerId);

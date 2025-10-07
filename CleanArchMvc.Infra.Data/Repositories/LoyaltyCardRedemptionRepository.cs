@@ -27,7 +27,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -39,7 +39,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }
@@ -66,20 +66,20 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<LoyaltyCardRedemption>> GetByStoreAsync(int storeId)
+        public async Task<IEnumerable<LoyaltyCardRedemption>> GetByCompanyAsync(int companyId)
         {
             return await _redemptionContext.LoyaltyCardRedemptions
-                .Where(x => x.StoreId == storeId)
+                .Where(x => x.CompanyId == companyId)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }
@@ -92,7 +92,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }
@@ -106,7 +106,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }
@@ -119,7 +119,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
                     .ThenInclude(x => x.Customer)
                 .Include(x => x.CustomerLoyaltyCard)
                     .ThenInclude(x => x.LoyaltyCard)
-                .Include(x => x.Store)
+                .Include(x => x.Company)
                 .Include(x => x.Product)
                 .ToListAsync();
         }

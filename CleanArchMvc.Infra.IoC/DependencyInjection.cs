@@ -1,4 +1,4 @@
-﻿using CleanArchMvc.Application.Interfaces;
+using CleanArchMvc.Application.Interfaces;
 using CleanArchMvc.Application.Mappings;
 using CleanArchMvc.Application.Services;
 using CleanArchMvc.Domain.Interfaces;
@@ -24,6 +24,22 @@ namespace CleanArchMvc.Infra.IoC
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            
+            // Loyalty Card System
+            services.AddScoped<ILoyaltyCardRepository, LoyaltyCardRepository>();
+            services.AddScoped<INetworkRepository, NetworkRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerLoyaltyCardRepository, CustomerLoyaltyCardRepository>();
+            services.AddScoped<ILoyaltyCardRedemptionRepository, LoyaltyCardRedemptionRepository>();
+            
+            services.AddScoped<ILoyaltyCardService, LoyaltyCardService>();
+            services.AddScoped<INetworkService, NetworkService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerLoyaltyCardService, CustomerLoyaltyCardService>();
+            services.AddScoped<ILoyaltyCardRedemptionService, LoyaltyCardRedemptionService>();
+            
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             var myHandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");

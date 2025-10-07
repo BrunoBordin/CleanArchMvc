@@ -7,7 +7,7 @@ namespace CleanArchMvc.Domain.Entities
     {
         public int CustomerId { get; private set; }
         public int LoyaltyCardId { get; private set; }
-        public int StoreId { get; private set; }
+        public int CompanyId { get; private set; }
         public int CurrentStamps { get; private set; }
         public DateTime? FirstStampDate { get; private set; }
         public DateTime? LastStampDate { get; private set; }
@@ -19,18 +19,18 @@ namespace CleanArchMvc.Domain.Entities
         // Navigation properties
         public Customer Customer { get; private set; }
         public LoyaltyCard LoyaltyCard { get; private set; }
-        public Store Store { get; private set; }
+        public Company Company { get; private set; }
         public ICollection<LoyaltyCardRedemption> Redemptions { get; private set; }
 
-        public CustomerLoyaltyCard(int customerId, int loyaltyCardId, int storeId)
+        public CustomerLoyaltyCard(int customerId, int loyaltyCardId, int companyId)
         {
             DomainExceptionValidation.When(customerId <= 0, "Invalid customer ID.");
             DomainExceptionValidation.When(loyaltyCardId <= 0, "Invalid loyalty card ID.");
-            DomainExceptionValidation.When(storeId <= 0, "Invalid store ID.");
+            DomainExceptionValidation.When(companyId <= 0, "Invalid company ID.");
 
             CustomerId = customerId;
             LoyaltyCardId = loyaltyCardId;
-            StoreId = storeId;
+            CompanyId = companyId;
             CurrentStamps = 0;
             IsCompleted = false;
             CreatedAt = DateTime.UtcNow;
@@ -38,20 +38,20 @@ namespace CleanArchMvc.Domain.Entities
             Redemptions = new List<LoyaltyCardRedemption>();
         }
 
-        public CustomerLoyaltyCard(int id, int customerId, int loyaltyCardId, int storeId,
+        public CustomerLoyaltyCard(int id, int customerId, int loyaltyCardId, int companyId,
             int currentStamps, DateTime? firstStampDate, DateTime? lastStampDate,
             DateTime? expirationDate, bool isCompleted, DateTime createdAt)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             DomainExceptionValidation.When(customerId <= 0, "Invalid customer ID.");
             DomainExceptionValidation.When(loyaltyCardId <= 0, "Invalid loyalty card ID.");
-            DomainExceptionValidation.When(storeId <= 0, "Invalid store ID.");
+            DomainExceptionValidation.When(companyId <= 0, "Invalid company ID.");
             DomainExceptionValidation.When(currentStamps < 0, "Current stamps cannot be negative.");
 
             Id = id;
             CustomerId = customerId;
             LoyaltyCardId = loyaltyCardId;
-            StoreId = storeId;
+            CompanyId = companyId;
             CurrentStamps = currentStamps;
             FirstStampDate = firstStampDate;
             LastStampDate = lastStampDate;

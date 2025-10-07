@@ -6,7 +6,7 @@ namespace CleanArchMvc.Domain.Entities
     public sealed class LoyaltyCardRedemption : Entity
     {
         public int CustomerLoyaltyCardId { get; private set; }
-        public int StoreId { get; private set; }
+        public int CompanyId { get; private set; }
         public int? ProductId { get; private set; }
         public decimal? DiscountValue { get; private set; }
         public decimal? CashbackValue { get; private set; }
@@ -19,20 +19,20 @@ namespace CleanArchMvc.Domain.Entities
 
         // Navigation properties
         public CustomerLoyaltyCard CustomerLoyaltyCard { get; private set; }
-        public Store Store { get; private set; }
+        public Company Company { get; private set; }
         public Product? Product { get; private set; }
 
-        public LoyaltyCardRedemption(int customerLoyaltyCardId, int storeId, RewardType rewardType,
+        public LoyaltyCardRedemption(int customerLoyaltyCardId, int companyId, RewardType rewardType,
             int? productId = null, decimal? discountValue = null, decimal? cashbackValue = null,
             DateTime? benefitExpirationDate = null, string? notes = null)
         {
             DomainExceptionValidation.When(customerLoyaltyCardId <= 0, "Invalid customer loyalty card ID.");
-            DomainExceptionValidation.When(storeId <= 0, "Invalid store ID.");
+            DomainExceptionValidation.When(companyId <= 0, "Invalid company ID.");
 
             ValidateRewardType(rewardType, productId, discountValue, cashbackValue);
 
             CustomerLoyaltyCardId = customerLoyaltyCardId;
-            StoreId = storeId;
+            CompanyId = companyId;
             RewardType = rewardType;
             ProductId = productId;
             DiscountValue = discountValue;
@@ -43,17 +43,17 @@ namespace CleanArchMvc.Domain.Entities
             IsUsed = false;
         }
 
-        public LoyaltyCardRedemption(int id, int customerLoyaltyCardId, int storeId, RewardType rewardType,
+        public LoyaltyCardRedemption(int id, int customerLoyaltyCardId, int companyId, RewardType rewardType,
             int? productId, decimal? discountValue, decimal? cashbackValue, DateTime redeemedAt,
             DateTime? benefitExpirationDate, bool isUsed, DateTime? usedAt, string? notes)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             DomainExceptionValidation.When(customerLoyaltyCardId <= 0, "Invalid customer loyalty card ID.");
-            DomainExceptionValidation.When(storeId <= 0, "Invalid store ID.");
+            DomainExceptionValidation.When(companyId <= 0, "Invalid company ID.");
 
             Id = id;
             CustomerLoyaltyCardId = customerLoyaltyCardId;
-            StoreId = storeId;
+            CompanyId = companyId;
             RewardType = rewardType;
             ProductId = productId;
             DiscountValue = discountValue;

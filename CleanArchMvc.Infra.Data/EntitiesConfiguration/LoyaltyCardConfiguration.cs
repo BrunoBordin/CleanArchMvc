@@ -30,7 +30,12 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
             builder.HasIndex(x => x.CreatedAt);
 
             // Relationships
-            builder.HasMany(x => x.ParticipatingStores)
+            builder.HasMany(x => x.ParticipatingNetworks)
+                .WithOne(x => x.LoyaltyCard)
+                .HasForeignKey(x => x.LoyaltyCardId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.ParticipatingCompanies)
                 .WithOne(x => x.LoyaltyCard)
                 .HasForeignKey(x => x.LoyaltyCardId)
                 .OnDelete(DeleteBehavior.Cascade);

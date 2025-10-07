@@ -11,7 +11,7 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CustomerId).IsRequired();
             builder.Property(x => x.LoyaltyCardId).IsRequired();
-            builder.Property(x => x.StoreId).IsRequired();
+            builder.Property(x => x.CompanyId).IsRequired();
             builder.Property(x => x.CurrentStamps).IsRequired();
             builder.Property(x => x.FirstStampDate);
             builder.Property(x => x.LastStampDate);
@@ -21,10 +21,10 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
             builder.Property(x => x.UpdatedAt);
 
             // Indexes
-            builder.HasIndex(x => new { x.CustomerId, x.LoyaltyCardId, x.StoreId }).IsUnique();
+            builder.HasIndex(x => new { x.CustomerId, x.LoyaltyCardId, x.CompanyId }).IsUnique();
             builder.HasIndex(x => x.CustomerId);
             builder.HasIndex(x => x.LoyaltyCardId);
-            builder.HasIndex(x => x.StoreId);
+            builder.HasIndex(x => x.CompanyId);
             builder.HasIndex(x => x.IsCompleted);
             builder.HasIndex(x => x.ExpirationDate);
 
@@ -39,9 +39,9 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
                 .HasForeignKey(x => x.LoyaltyCardId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(x => x.Store)
+            builder.HasOne(x => x.Company)
                 .WithMany(x => x.CustomerCards)
-                .HasForeignKey(x => x.StoreId)
+                .HasForeignKey(x => x.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Redemptions)

@@ -10,7 +10,7 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CustomerLoyaltyCardId).IsRequired();
-            builder.Property(x => x.StoreId).IsRequired();
+            builder.Property(x => x.CompanyId).IsRequired();
             builder.Property(x => x.ProductId);
             builder.Property(x => x.DiscountValue).HasPrecision(18, 2);
             builder.Property(x => x.CashbackValue).HasPrecision(18, 2);
@@ -23,7 +23,7 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
 
             // Indexes
             builder.HasIndex(x => x.CustomerLoyaltyCardId);
-            builder.HasIndex(x => x.StoreId);
+            builder.HasIndex(x => x.CompanyId);
             builder.HasIndex(x => x.RedeemedAt);
             builder.HasIndex(x => x.IsUsed);
             builder.HasIndex(x => x.BenefitExpirationDate);
@@ -34,9 +34,9 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
                 .HasForeignKey(x => x.CustomerLoyaltyCardId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(x => x.Store)
+            builder.HasOne(x => x.Company)
                 .WithMany(x => x.Redemptions)
-                .HasForeignKey(x => x.StoreId)
+                .HasForeignKey(x => x.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Product)

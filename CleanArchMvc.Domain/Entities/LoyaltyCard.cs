@@ -21,7 +21,8 @@ namespace CleanArchMvc.Domain.Entities
         public DateTime? UpdatedAt { get; private set; }
 
         // Navigation properties
-        public ICollection<LoyaltyCardStore> ParticipatingStores { get; private set; }
+        public ICollection<LoyaltyCardNetwork> ParticipatingNetworks { get; private set; }
+        public ICollection<LoyaltyCardCompany> ParticipatingCompanies { get; private set; }
         public ICollection<LoyaltyCardEligibleProduct> EligibleProducts { get; private set; }
         public ICollection<LoyaltyCardEligibleCategory> EligibleCategories { get; private set; }
         public ICollection<LoyaltyCardRewardProduct> RewardProducts { get; private set; }
@@ -56,7 +57,8 @@ namespace CleanArchMvc.Domain.Entities
             BenefitValidityDays = benefitValidityDays;
             CreatedAt = DateTime.UtcNow;
             
-            ParticipatingStores = new List<LoyaltyCardStore>();
+            ParticipatingNetworks = new List<LoyaltyCardNetwork>();
+            ParticipatingCompanies = new List<LoyaltyCardCompany>();
             EligibleProducts = new List<LoyaltyCardEligibleProduct>();
             EligibleCategories = new List<LoyaltyCardEligibleCategory>();
             RewardProducts = new List<LoyaltyCardRewardProduct>();
@@ -87,7 +89,8 @@ namespace CleanArchMvc.Domain.Entities
             BenefitValidityDays = benefitValidityDays;
             CreatedAt = createdAt == default ? DateTime.UtcNow : createdAt;
             
-            ParticipatingStores = new List<LoyaltyCardStore>();
+            ParticipatingNetworks = new List<LoyaltyCardNetwork>();
+            ParticipatingCompanies = new List<LoyaltyCardCompany>();
             EligibleProducts = new List<LoyaltyCardEligibleProduct>();
             EligibleCategories = new List<LoyaltyCardEligibleCategory>();
             RewardProducts = new List<LoyaltyCardRewardProduct>();

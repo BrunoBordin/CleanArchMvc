@@ -2,9 +2,10 @@ using CleanArchMvc.Domain.Validation;
 
 namespace CleanArchMvc.Domain.Entities
 {
-    public sealed class Store : Entity
+    public sealed class Network : Entity
     {
         public string Name { get; private set; }
+        public string Description { get; private set; }
         public string CNPJ { get; private set; }
         public string Address { get; private set; }
         public string City { get; private set; }
@@ -17,16 +18,16 @@ namespace CleanArchMvc.Domain.Entities
         public DateTime? UpdatedAt { get; private set; }
 
         // Navigation properties
-        public ICollection<LoyaltyCardStore> LoyaltyCards { get; private set; }
-        public ICollection<CustomerLoyaltyCard> CustomerCards { get; private set; }
-        public ICollection<LoyaltyCardRedemption> Redemptions { get; private set; }
+        public ICollection<Company> Companies { get; private set; }
+        public ICollection<LoyaltyCardNetwork> LoyaltyCards { get; private set; }
 
-        public Store(string name, string cnpj, string address, string city, string state, 
-            string zipCode, string phone, string email)
+        public Network(string name, string description, string cnpj, string address, string city, 
+            string state, string zipCode, string phone, string email)
         {
-            ValidateDomain(name, cnpj, address, city, state, zipCode, phone, email);
+            ValidateDomain(name, description, cnpj, address, city, state, zipCode, phone, email);
             
             Name = name;
+            Description = description;
             CNPJ = cnpj;
             Address = address;
             City = city;
@@ -37,19 +38,20 @@ namespace CleanArchMvc.Domain.Entities
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
             
-            LoyaltyCards = new List<LoyaltyCardStore>();
-            CustomerCards = new List<CustomerLoyaltyCard>();
-            Redemptions = new List<LoyaltyCardRedemption>();
+            Companies = new List<Company>();
+            LoyaltyCards = new List<LoyaltyCardNetwork>();
         }
 
-        public Store(int id, string name, string cnpj, string address, string city, string state,
-            string zipCode, string phone, string email, bool isActive, DateTime createdAt)
+        public Network(int id, string name, string description, string cnpj, string address, 
+            string city, string state, string zipCode, string phone, string email, 
+            bool isActive, DateTime createdAt)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             Id = id;
-            ValidateDomain(name, cnpj, address, city, state, zipCode, phone, email);
+            ValidateDomain(name, description, cnpj, address, city, state, zipCode, phone, email);
             
             Name = name;
+            Description = description;
             CNPJ = cnpj;
             Address = address;
             City = city;
@@ -60,17 +62,17 @@ namespace CleanArchMvc.Domain.Entities
             IsActive = isActive;
             CreatedAt = createdAt;
             
-            LoyaltyCards = new List<LoyaltyCardStore>();
-            CustomerCards = new List<CustomerLoyaltyCard>();
-            Redemptions = new List<LoyaltyCardRedemption>();
+            Companies = new List<Company>();
+            LoyaltyCards = new List<LoyaltyCardNetwork>();
         }
 
-        public void Update(string name, string address, string city, string state, 
-            string zipCode, string phone, string email)
+        public void Update(string name, string description, string address, string city, 
+            string state, string zipCode, string phone, string email)
         {
-            ValidateDomain(name, CNPJ, address, city, state, zipCode, phone, email);
+            ValidateDomain(name, description, CNPJ, address, city, state, zipCode, phone, email);
             
             Name = name;
+            Description = description;
             Address = address;
             City = city;
             State = state;
@@ -92,11 +94,14 @@ namespace CleanArchMvc.Domain.Entities
             UpdatedAt = DateTime.UtcNow;
         }
 
-        private void ValidateDomain(string name, string cnpj, string address, string city, 
-            string state, string zipCode, string phone, string email)
+        private void ValidateDomain(string name, string description, string cnpj, string address, 
+            string city, string state, string zipCode, string phone, string email)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name),
                 "Invalid name. Name is required.");
+
+            DomainExceptionValidation.When(string.IsNullOrEmpty(description),
+                "Invalid description. Description is required.");
 
             DomainExceptionValidation.When(string.IsNullOrEmpty(cnpj),
                 "Invalid CNPJ. CNPJ is required.");

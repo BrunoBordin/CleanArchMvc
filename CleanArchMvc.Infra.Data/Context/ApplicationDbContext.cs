@@ -14,9 +14,11 @@ namespace CleanArchMvc.Infra.Data.Context
         
         // Loyalty Card System
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
-        public DbSet<Store> Stores { get; set; }
+        public DbSet<Network> Networks { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<LoyaltyCardStore> LoyaltyCardStores { get; set; }
+        public DbSet<LoyaltyCardNetwork> LoyaltyCardNetworks { get; set; }
+        public DbSet<LoyaltyCardCompany> LoyaltyCardCompanies { get; set; }
         public DbSet<LoyaltyCardEligibleProduct> LoyaltyCardEligibleProducts { get; set; }
         public DbSet<LoyaltyCardEligibleCategory> LoyaltyCardEligibleCategories { get; set; }
         public DbSet<LoyaltyCardRewardProduct> LoyaltyCardRewardProducts { get; set; }
